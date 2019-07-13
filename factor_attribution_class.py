@@ -69,8 +69,8 @@ class factorAttribution(object):
         #self.port_factor_exposure = self.h.dot(self.S)
 
         # B) Vol Adj Exposure
-        self.factor_vol = (np.sqrt(np.diag(self.F))) # this should be F not V!
-
+        self.factor_vol = np.sqrt(np.diag(self.F)) # this should be F not V!
+        self.factor_vol = self.factor_vol.reshape(self.k, 1)
         # vol_adj_factor_exp = h.T.dot(S)*factor_vol
         try:
             self.vol_adj_factor_exposure = self.port_factor_exposure * self.factor_vol
@@ -82,7 +82,9 @@ class factorAttribution(object):
 
         # C) Risk Contribution (from factors) = h' * V * S * B
         try:
-            self.risk_contrib_from_factors = self.h.T.dot(self.V).dot(self.S) / self.port_vol * (B)
+            self.risk_contrib_from_factors = self.h.T.dot(self.V).dot(self.S).T * (B)
+            self.risk_contrib_from_factors = self.risk_contrib_from_factors / self.port_vol
+            assert self.risk_contrib_from_factors.shape == (self.k,1)
         except Exception as e:
             print(e)
             import pdb; pdb.set_trace()
@@ -99,7 +101,9 @@ class factorAttribution(object):
         # return contrib from factors = B * S' * R
         #self.return_contrib_from_factors = self.h.T * (self.R) # this is wrong...
 #        self.return_contrib_from_factors = self.R.T.dot(S)*B.dot(factor_rets )
-        self.return_contrib_from_factors = (self.port_factor_exposure*(self.factor_returns.T)).T
+        # actually its B' * S' * R
+        self.return_contrib_from_factors = self.port_factor_exposure * (self.factor_returns)
+        assert self.return_contrib_from_factors.shape == (self.k,1)
 
         # resid portfolio
         self.u = self.h - self.S.dot(B)
