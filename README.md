@@ -3,7 +3,7 @@
 
 ## by Alex Chao
 
-Toy example for custom factor attributions including a python class that calculates risk and return contributions
+Toy example for custom holdings-based factor attributions including a python class that calculates risk and return contributions
 
 
 

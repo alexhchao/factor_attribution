@@ -8,7 +8,7 @@ class factorAttribution(object):
 
     def __init__(self,
                  V,
-                 F,
+                F,
                  h,
                  S,
                  R,
@@ -68,6 +68,10 @@ class factorAttribution(object):
         self.port_factor_exposure = B
         #self.port_factor_exposure = self.h.dot(self.S)
 
+        # added 7-13
+        # no need for F, can calculate F = S' V S
+        #self.F
+
         # B) Vol Adj Exposure
         self.factor_vol = np.sqrt(np.diag(self.F)) # this should be F not V!
         self.factor_vol = self.factor_vol.reshape(self.k, 1)
@@ -100,10 +104,17 @@ class factorAttribution(object):
         # E) Return contribution
         # return contrib from factors = B * S' * R
         #self.return_contrib_from_factors = self.h.T * (self.R) # this is wrong...
-#        self.return_contrib_from_factors = self.R.T.dot(S)*B.dot(factor_rets )
+        #self.return_contrib_from_factors = self.R.T.dot(S)*B.dot(factor_rets )
         # actually its B' * S' * R
-        self.return_contrib_from_factors = self.port_factor_exposure * (self.factor_returns)
-        assert self.return_contrib_from_factors.shape == (self.k,1)
+        self.return_contrib_from_factors = self.port_factor_exposure * (self.factor_returns.reshape(
+            self.k,1))
+        try:
+            assert self.return_contrib_from_factors.shape == (self.k,1)
+        except Exception as e:
+            print(e)
+            print("expected dim should be {} by 1, instead got {}".format(
+                self.k,
+                self.return_contrib_from_factors.shape))
 
         # resid portfolio
         self.u = self.h - self.S.dot(B)

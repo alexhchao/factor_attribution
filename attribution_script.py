@@ -46,7 +46,8 @@ factor_attrib = factorAttribution(V=np.array(V),
                          S=np.array(S),
                          R=np.array(R),
                                   list_factors=['S1', 'S2', 'S3'])
-factor_attrib
+
+factor_attrib.all_factor_risk_return_contrib
 
 ###############
 # importing risk model package
