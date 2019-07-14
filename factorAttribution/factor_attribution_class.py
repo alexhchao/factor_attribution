@@ -3,7 +3,7 @@ import pandas as pd
 
 class factorAttribution(object):
     """
-    factor risk model
+    factor attribution class - at one time period
     """
 
     def __init__(self,
