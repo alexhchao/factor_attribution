@@ -28,15 +28,12 @@ assuming:
 
 S' V u = 0
 
-
 hit equation with S' V
 
 S' V h = S ' V S B + S' V u
 
-
 S' V h = S ' V S B
 
-![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)
 
 \begin{equation*}
 B = (S' V S)^{-1} S ' V h
@@ -45,6 +42,7 @@ B = (S' V S)^{-1} S ' V h
 
 #### Portfolio factor exposures (B)
 
+![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)
 
 ```python
 
@@ -53,35 +51,6 @@ B = (S' V S)^{-1} S ' V h
 \begin{equation*}
 B = (S' V S)^{-1} S ' V h
 \end{equation*}
-
-
-
-1) Calculate portfolio factor exposure B
-
-
-```python
-
-```
-
-
-
-
-    array([[-0.3],
-           [ 0.5],
-           [ 0.8]])
-
-
-
-2) vol-adjusted factor exposure
-
-\begin{equation*}
-B * \sigma
-\end{equation*}
-
-
-```python
-
-```
 
 ### Risk Decomposition
 
@@ -91,11 +60,7 @@ Variance of the portfolio can be decmoposed into variance from factors and from 
 h' V h = h' V S B + h' V u
 \end{equation*}
 
-
 Divide both sides by 
-\begin{equation*}
-\sqrt{h'Vh}
-\end{equation*}
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
 
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D%20%3D%20%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D%20&plus;%20%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)
@@ -105,27 +70,13 @@ Divide both sides by
 \end{equation*}
 
 where portfolio risk = 
-
-\begin{equation*}
-\sqrt{h'Vh}
-\end{equation*}
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
 
 
-3) Variance contribution
 
-\begin{equation*}
+Variance contribution
+
 h' V S * B
-\end{equation*}
-
-
-```python
-
-```
-
-
-```python
-
-```
 
 
 ```python
@@ -148,11 +99,6 @@ hit with return (R)
 \begin{align*}
 h' R = B' S' R + u' R    
 \end{align*}
-
-
-```python
-
-```
 
 
 ```python
