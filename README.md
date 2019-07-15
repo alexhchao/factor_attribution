@@ -21,21 +21,17 @@ B = portfolio factor exposures [k x 1]
 u = residual portfolio [n x 1]  
 R = stock returns [n x 1]  
 
-
-h = S * B + u    
+  
 ![first equation](https://latex.codecogs.com/gif.latex?h%20%3D%20S%20*%20B%20&plus;%20u)
 
 assuming: 
 
-S' V u = 0
 ![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20u%20%3D%200)  
 
 hit equation with S' V
 
-S' V h = S ' V S B + S' V u
 ![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20h%20%3D%20S%20%27%20V%20S%20B%20&plus;%20S%27%20V%20u)  
 
-S' V h = S ' V S B
 ![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20h%20%3D%20S%20%27%20V%20S%20B)  
 
 #### Portfolio factor exposures (B) = 
@@ -50,7 +46,6 @@ S' V h = S ' V S B
 
 Variance of the portfolio can be decomposed into variance from factors and from residuals
 
-h' V h = h' V S B + h' V u
 ![first equation](https://latex.codecogs.com/gif.latex?h%27%20V%20h%20%3D%20h%27%20V%20S%20B%20&plus;%20h%27%20V%20u)    
 
 Divide both sides by 
@@ -80,19 +75,14 @@ return of the portfolio can be decomposed to return contribution from factors an
 
 ![first equation](https://latex.codecogs.com/gif.latex?h%20%3D%20S%20*%20B%20&plus;%20u)  
 
-```python
-hit with return (R)
-```
+hit with return (R)   
 
-h' R = B' S' R + u' R    
 ![first equation](https://latex.codecogs.com/gif.latex?h%27%20R%20%3D%20B%27%20S%27%20R%20&plus;%20u%27%20R)  
 
-return contribution from factors =   
-B' S' R   
+return contribution from factors =     
 ![first equation](https://latex.codecogs.com/gif.latex?B%27%20S%27%20R)  
 
-return contribution from residuals =   
-u' R    
+return contribution from residuals =    
 ![first equation](https://latex.codecogs.com/gif.latex?u%27%20R)  
 
 
