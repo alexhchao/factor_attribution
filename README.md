@@ -3,7 +3,7 @@
 
 ## by Alex Chao
 
-Package used to run custom holdings-based factor attributions that calculates risk and return contributions
+Package used to analyze a portfolio and run custom holdings-based factor attributions that calculates risk and return contributions. 
 
 ### Resources
 - Active Portfolio Management, Grinold and Kahn, 2000
