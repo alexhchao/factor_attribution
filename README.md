@@ -36,6 +36,8 @@ S' V h = S ' V S B + S' V u
 
 S' V h = S ' V S B
 
+![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)
+
 \begin{equation*}
 B = (S' V S)^{-1} S ' V h
 \end{equation*}
