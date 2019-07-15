@@ -96,6 +96,9 @@ Divide both sides by
 \begin{equation*}
 \sqrt{h'Vh}
 \end{equation*}
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
+
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D%20%3D%20%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D%20&plus;%20%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)
 
 \begin{equation*}
 \sqrt{h'Vh} = \frac{h' V S B}{\sqrt{h'Vh}} + \frac{h' V u}{\sqrt{h'Vh}}
