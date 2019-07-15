@@ -5,7 +5,10 @@
 
 Package used to run custom holdings-based factor attributions that calculates risk and return contributions
 
-
+### Resources
+- Active Portfolio Management, Grinold and Kahn, 2000
+- Attribution, Grinold, 2006
+- Made to Measure: Attribution, Deutsche Bank Quant Strategy, 2014
 
 Lets start with the formula for our holdings (portfolio) decomposed into a factor component and residual portfolio
 
