@@ -51,24 +51,24 @@ S' V h = S ' V S B
 Variance of the portfolio can be decomposed into variance from factors and from residuals
 
 h' V h = h' V S B + h' V u
-![first equation](https://latex.codecogs.com/gif.latex?h%27%20V%20h%20%3D%20h%27%20V%20S%20B%20&plus;%20h%27%20V%20u)  
+![first equation](https://latex.codecogs.com/gif.latex?h%27%20V%20h%20%3D%20h%27%20V%20S%20B%20&plus;%20h%27%20V%20u)    
 
 Divide both sides by 
-![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)   
 
-![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D%20%3D%20%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D%20&plus;%20%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D%20%3D%20%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D%20&plus;%20%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)   
 
 where portfolio risk = 
-![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
-
+![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)   
 
 risk contribution from factors = 
-
-h' V S * B
+![first equation](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)   
 
 risk contribution from residuals = 
+![first equation](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)   
 
-h' V u
+<!--- 
+\frac{h' V S B}{\sqrt{h'Vh}} + \frac{h' V u}{\sqrt{h'Vh}} --->
 
 ```python
 
