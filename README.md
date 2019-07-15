@@ -22,26 +22,19 @@ u = residual portfolio [n x 1]
 R = stock returns [n x 1]  
 
 
-
-\begin{align*}
 h = S * B + u    
-\end{align*}
 
 assuming: 
 
-\begin{align*}
 S' V u = 0
-\end{align*}
+
 
 hit equation with S' V
 
-\begin{align*}
 S' V h = S ' V S B + S' V u
-\end{align*}
 
-\begin{align*}
+
 S' V h = S ' V S B
-\end{align*}
 
 \begin{equation*}
 B = (S' V S)^{-1} S ' V h
