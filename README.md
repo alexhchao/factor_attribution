@@ -34,13 +34,7 @@ S' V h = S ' V S B + S' V u
 
 S' V h = S ' V S B
 
-
-\begin{equation*}
-B = (S' V S)^{-1} S ' V h
-\end{equation*}
-
-
-#### Portfolio factor exposures (B)
+#### Portfolio factor exposures (B) = 
 
 ![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)
 
@@ -48,36 +42,28 @@ B = (S' V S)^{-1} S ' V h
 
 ```
 
-\begin{equation*}
-B = (S' V S)^{-1} S ' V h
-\end{equation*}
-
 ### Risk Decomposition
 
-Variance of the portfolio can be decmoposed into variance from factors and from residuals
+Variance of the portfolio can be decomposed into variance from factors and from residuals
 
-\begin{equation*}
 h' V h = h' V S B + h' V u
-\end{equation*}
 
 Divide both sides by 
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
 
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D%20%3D%20%5Cfrac%7Bh%27%20V%20S%20B%7D%7B%5Csqrt%7Bh%27Vh%7D%7D%20&plus;%20%5Cfrac%7Bh%27%20V%20u%7D%7B%5Csqrt%7Bh%27Vh%7D%7D)
 
-\begin{equation*}
-\sqrt{h'Vh} = \frac{h' V S B}{\sqrt{h'Vh}} + \frac{h' V u}{\sqrt{h'Vh}}
-\end{equation*}
-
 where portfolio risk = 
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
 
 
-
-Variance contribution
+variance contribution from factors = 
 
 h' V S * B
 
+variance contribution from residuals = 
+
+h' V u
 
 ```python
 
@@ -87,19 +73,18 @@ h' V S * B
 
 return of the portfolio can be decomposed to return contribution from factors and residuals
 
-\begin{align*}
 h = S * B + u    
-\end{align*}
-
 
 ```python
 hit with return (R)
 ```
 
-\begin{align*}
 h' R = B' S' R + u' R    
-\end{align*}
 
+return contribution from factors = 
+B' S' R
+return contribution from residuals = 
+u' R   
 
 ```python
 
