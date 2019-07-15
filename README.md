@@ -23,20 +23,24 @@ R = stock returns [n x 1]
 
 
 h = S * B + u    
+![first equation](https://latex.codecogs.com/gif.latex?h%20%3D%20S%20*%20B%20&plus;%20u)
 
 assuming: 
 
 S' V u = 0
+![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20u%20%3D%200)  
 
 hit equation with S' V
 
 S' V h = S ' V S B + S' V u
+![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20h%20%3D%20S%20%27%20V%20S%20B%20&plus;%20S%27%20V%20u)  
 
 S' V h = S ' V S B
+![first equation](https://latex.codecogs.com/gif.latex?S%27%20V%20h%20%3D%20S%20%27%20V%20S%20B)  
 
 #### Portfolio factor exposures (B) = 
 
-![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)
+![first equation](https://latex.codecogs.com/gif.latex?%28S%27%20V%20S%29%5E%7B-1%7DS%27%20V%20h)  
 
 ```python
 
@@ -47,6 +51,7 @@ S' V h = S ' V S B
 Variance of the portfolio can be decomposed into variance from factors and from residuals
 
 h' V h = h' V S B + h' V u
+![first equation](https://latex.codecogs.com/gif.latex?h%27%20V%20h%20%3D%20h%27%20V%20S%20B%20&plus;%20h%27%20V%20u)  
 
 Divide both sides by 
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
@@ -57,11 +62,11 @@ where portfolio risk =
 ![first equation](https://latex.codecogs.com/gif.latex?%5Csqrt%7Bh%27Vh%7D)
 
 
-variance contribution from factors = 
+risk contribution from factors = 
 
 h' V S * B
 
-variance contribution from residuals = 
+risk contribution from residuals = 
 
 h' V u
 
@@ -73,18 +78,23 @@ h' V u
 
 return of the portfolio can be decomposed to return contribution from factors and residuals
 
-h = S * B + u    
+![first equation](https://latex.codecogs.com/gif.latex?h%20%3D%20S%20*%20B%20&plus;%20u)  
 
 ```python
 hit with return (R)
 ```
 
 h' R = B' S' R + u' R    
+![first equation](https://latex.codecogs.com/gif.latex?h%27%20R%20%3D%20B%27%20S%27%20R%20&plus;%20u%27%20R)  
 
-return contribution from factors = 
+return contribution from factors =   
 B' S' R   
-return contribution from residuals = 
+![first equation](https://latex.codecogs.com/gif.latex?B%27%20S%27%20R)  
+
+return contribution from residuals =   
 u' R    
+![first equation](https://latex.codecogs.com/gif.latex?u%27%20R)  
+
 
 ```python
 
