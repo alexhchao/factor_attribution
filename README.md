@@ -82,9 +82,9 @@ hit with return (R)
 h' R = B' S' R + u' R    
 
 return contribution from factors = 
-B' S' R
+B' S' R   
 return contribution from residuals = 
-u' R   
+u' R    
 
 ```python
 
