@@ -86,334 +86,58 @@ return contribution from residuals =
 ![first equation](https://latex.codecogs.com/gif.latex?u%27%20R)  
 
 
-```python
-
-```
-
-### Now translate this into Python code:
+Import the factorAttribution class
 
 
 ```python
+
+import os
+import mpu
 
 import numpy as np
 import pandas as pd
-from factor_attribution_class import factorAttribution
 
-V = np.array([[0.0232, 0.0163, 0.0095],[0.0163, 0.2601, 0.0122],[0.0095, 0.0122, 0.0174]])
+from factorAttribution.factor_attribution_class import factorAttribution
 
-F = V
 
-h = np.array([-0.3, 0.5, 0.8])
 
-S = np.identity(3)
+```
 
-R = np.array([0.0604, 0.1795, 0.0419])
+Now lets test that the package is working as expected. Lets pretend our portfolio is the momentum factor mimicking portfolio. If our attribution is correct, it should have 100% risk / return contribution to momentum factor and 0 to all other factors.
 
-V = pd.DataFrame(V)
 
-V.columns = ['X','Y','Z']
-V.index = ['X','Y','Z']
+```python
+factor_model = mpu.io.read("data/factor_model_object.pickle")
 
-h = pd.DataFrame(h)
-h.index = ['X','Y','Z']
+factor_to_test = 'momentum'
+dt = '2015-12-31'
+V = factor_model.all_stock_covariance_mat[dt].copy()
+F = factor_model.all_factor_covariance_mat[dt].copy()
+S = factor_model.all_FMPs[dt].copy()
+h = factor_model.all_FMPs[dt].loc[:,[factor_to_test]]
+R = factor_model.df.reset_index().query(
+    "date == @dt").set_index('stock').fwd_returns.loc[h.index].copy()*.01
+F = S.T.dot(V).dot(S)
 
-S = pd.DataFrame(np.identity(3))
-S = pd.DataFrame(S)
-S.index = ['X','Y','Z']
-S.columns = ['S1','S2','S3']
-
-R = pd.DataFrame(R)
-R.index = ['X','Y','Z']
-
-F = pd.DataFrame(F)
-F.index = ['S1','S2','S3']
-F.columns= ['S1','S2','S3']
 ```
 
 
 ```python
-S
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>S1</th>
-      <th>S2</th>
-      <th>S3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>X</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-V
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>X</th>
-      <th>Y</th>
-      <th>Z</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>X</th>
-      <td>0.0232</td>
-      <td>0.0163</td>
-      <td>0.0095</td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td>0.0163</td>
-      <td>0.2601</td>
-      <td>0.0122</td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td>0.0095</td>
-      <td>0.0122</td>
-      <td>0.0174</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-h
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>X</th>
-      <td>-0.3</td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td>0.8</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-S
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>S1</th>
-      <th>S2</th>
-      <th>S3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>X</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-R
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>X</th>
-      <td>0.0604</td>
-    </tr>
-    <tr>
-      <th>Y</th>
-      <td>0.1795</td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td>0.0419</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-
-```
-
-### Custom Factor Attribution class
-
-
-```python
-
 factor_attrib = factorAttribution(V=np.array(V),
                          h=np.array(h),
                         F = np.array(F),
                          S=np.array(S),
-                         R=np.array(R),
-                                  list_factors=['S1', 'S2', 'S3'])
+                         R=R.reshape(575,1),
+                                  list_factors=list(F.index))
 factor_attrib
+
+
 ```
 
-     n = 3 stocks, k = 3 factors
+     n = 575 stocks, k = 16 factors
+
+
+    /anaconda/lib/python3.6/site-packages/ipykernel/__main__.py:5: FutureWarning: reshape is deprecated and will raise in a subsequent release. Please use .values.reshape(...) instead
 
 
 
@@ -422,65 +146,65 @@ factor_attrib
     
             factorAttribution class
             =======================
-            Portfolio Variance = [[0.078559]]
+            Portfolio Variance = [[9.50254962e-05]]
     
             Exposures / Risk Contributions
             ==============================
-                port_factor_exposure  vol_adj_factor_exposure  risk_contrib_from_factors  \
-    S1                  -0.3                -0.045695                  -0.009408   
-    S2                   0.5                 0.255000                   0.240685   
-    S3                   0.8                 0.105527                   0.049007   
+                        port_factor_exposure  vol_adj_factor_exposure  \
+    momentum            1.000000e+00             9.748102e-03   
+    quality             5.551115e-16             3.341803e-18   
+    growth             -1.332268e-15            -5.755048e-18   
+    vol                -4.440892e-16            -6.996256e-18   
+    value               1.110223e-15             7.968550e-18   
+    ...                          ...                      ...   
+    sector_5.0         -3.885781e-16            -1.692986e-17   
+    sector_6.0          2.220446e-16             9.117568e-18   
+    sector_7.0         -4.163336e-16            -1.599381e-17   
+    sector_8.0         -1.387779e-17            -6.099662e-19   
+    sector_9.0          2.220446e-16             8.494458e-18   
     
-        risk_contrib_from_factors_pct  return_contrib_from_factors  
-    S1                      -0.033567                     -0.01812  
-    S2                       0.858718                      0.08975  
-    S3                       0.174849                      0.03352  
+                risk_contrib_from_factors  risk_contrib_from_factors_pct  \
+    momentum                 9.748102e-03                   1.000000e+00   
+    quality                  9.951033e-20                   1.020817e-17   
+    growth                  -4.480809e-19                  -4.596596e-17   
+    vol                      3.335628e-18                   3.421823e-16   
+    value                   -1.205426e-18                  -1.236575e-16   
+    ...                               ...                            ...   
+    sector_5.0               5.947306e-18                   6.100988e-16   
+    sector_6.0              -2.709984e-18                  -2.780012e-16   
+    sector_7.0               4.191410e-18                   4.299719e-16   
+    sector_8.0               2.070302e-19                   2.123800e-17   
+    sector_9.0              -1.602553e-18                  -1.643964e-16   
+    
+                return_contrib_from_factors  
+    momentum                   1.004050e-02  
+    quality                    6.085842e-19  
+    growth                    -1.874248e-18  
+    vol                        1.810498e-18  
+    value                     -4.255040e-18  
+    ...                                 ...  
+    sector_5.0                 1.365673e-17  
+    sector_6.0                 1.181791e-18  
+    sector_7.0                -3.141411e-19  
+    sector_8.0                 1.291511e-19  
+    sector_9.0                 4.028263e-18  
+    
+    [16 rows x 5 columns]
             
             Risk Contributions
             ==================
-            Portfolio Vol             = [[0.28028378]]
-            Risk Contrib from Factors = 0.2802837847610882
-            Risk Contrib from Resid   = [[-3.31937467e-18]]
+            Portfolio Vol             = [[0.0097481]]
+            Risk Contrib from Factors = 0.009748102182194641
+            Risk Contrib from Resid   = [[1.52195232e-17]]
             
             Return Contributions
             ==================
-            Portfolio Returns           = [0.10515]
-            Return Contrib from Factors = 0.10515
-            Return Contrib from Resid   = [2.0539126e-18]
+            Portfolio Returns           = [0.0100405]
+            Return Contrib from Factors = 0.010040504538319272
+            Return Contrib from Resid   = [-1.83448945e-17]
             
 
 
-
-
-```python
-
-```
-
-
-```python
-B = np.linalg.inv(S.T.dot(V).dot(S)).dot(S.T.dot(V).dot(h))
-print(B)
-```
-
-    [[-0.3]
-     [ 0.5]
-     [ 0.8]]
-
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
 
 
 ```python
